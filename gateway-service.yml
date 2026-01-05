@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: environment-service
+          uri: lb://environment-service
+          predicates:
+            - Path=/environment/**
+        - id: control-service
+          uri: lb://control-service
+          predicates:
+            - Path=/control/**
