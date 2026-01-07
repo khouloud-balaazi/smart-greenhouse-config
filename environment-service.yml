@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: environment-service
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/environment_db
+    username: root
+    password:
+
+  rabbitmq:
+    host: leopard.lmq.cloudamqp.com
+    port: 5672
+    username: qiyhxqyw
+    password: cqmNazI1t4eaWlutnCjEwBYqat_BNcbX
+    virtual-host: qiyhxqyw
+    ssl:
+      enabled: false
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
