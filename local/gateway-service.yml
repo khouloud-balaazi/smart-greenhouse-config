@@ -33,7 +33,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://eureka-server:8761/eureka  # <- changer localhost par le nom du container
+      defaultZone: http://localhost:8761/eureka
 
 management:
   endpoints:
