@@ -1,10 +1,6 @@
 spring:
   application:
     name: environment-service
-
-  config:
-    import: "configserver:http://localhost:8888"
-
   datasource:
     url: jdbc:mysql://localhost:3306/environment_db?useSSL=false&serverTimezone=UTC
     username: root
@@ -17,7 +13,9 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-    database-platform: org.hibernate.dialect.MySQLDialect
+    properties:
+      hibernate:
+        format_sql: true
 
   rabbitmq:
     host: leopard.lmq.cloudamqp.com
@@ -28,9 +26,17 @@ spring:
     ssl:
       enabled: false
 
-  jackson:
-    serialization:
-      write-dates-as-timestamps: false
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    db:
+      enabled: true
+    rabbit:
+      enabled: true
 
 eureka:
   client:
