@@ -1,6 +1,8 @@
 spring:
   application:
     name: environment-service
+  config:
+    import: optional:configserver:http://config-server:8888
 
   datasource:
     url: jdbc:mysql://environment-db:3306/environment_db?useSSL=false&serverTimezone=UTC  # <- container MySQL

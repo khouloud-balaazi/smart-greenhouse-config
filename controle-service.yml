@@ -1,6 +1,8 @@
 spring:
   application:
     name: controle-service
+  config:
+    import: optional:configserver:http://config-server:8888
 
   datasource:
     url: jdbc:mysql://controle-db:3306/control_db?useSSL=false&serverTimezone=UTC  # <- container MySQL
