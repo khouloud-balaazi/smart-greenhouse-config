@@ -4,49 +4,36 @@ spring:
 
   cloud:
     gateway:
-      server:
-        webflux:
-          discovery:
-            locator:
-              enabled: true
-              lower-case-service-id: true
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
 
-          routes:
-            - id: environment-service
-              uri: lb://environment-service
-              predicates:
-                - Path=/environment-service/**
-              filters:
-                - RewritePath=/environment-service/(?<segment>.*), /${segment}
-            - id: controle-service
-              uri: lb://controle-service
-              predicates:
-                - Path=/controle-service/**
-              filters:
-                - RewritePath=/controle-service/(?<segment>.*), /${segment}
+      routes:
+        - id: environment-service
+          uri: lb://environment-service
+          predicates:
+            - Path=/environment-service/**
+          filters:
+            - RewritePath=/environment-service/(?<segment>.*), /${segment}
+
+        - id: controle-service
+          uri: lb://controle-service
+          predicates:
+            - Path=/controle-service/**
+          filters:
+            - RewritePath=/controle-service/(?<segment>.*), /${segment}
 
 server:
   port: 8085
 
 eureka:
   client:
-    register-with-eureka: true
-    fetch-registry: true
     service-url:
-      defaultZone: http://eureka-server:8761/eureka  # <- changer localhost par le nom du container
+      defaultZone: http://eureka-server:8761/eureka
 
 management:
   endpoints:
     web:
       exposure:
-        include: gateway, refresh, health, info
-  endpoint:
-    gateway:
-      enabled: true
-
-# -------------------------
-# Logging DEBUG (temporaire pour debug)
-logging:
-  level:
-    org.springframework.cloud.gateway: DEBUG
-    org.springframework.cloud.client.discovery: DEBUG
+        include: gateway, health, info

@@ -1,24 +1,17 @@
 spring:
   application:
     name: controle-service
-  config:
-    import: optional:configserver:http://config-server:8888
 
   datasource:
-    url: jdbc:mysql://controle-db:3306/control_db?useSSL=false&serverTimezone=UTC  # <- container MySQL
+    url: jdbc:mysql://controle-db:3306/control_db?useSSL=false&serverTimezone=UTC
     username: root
-    password: ""
+    password:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    hikari:
-      maximum-pool-size: 10
 
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
 
   rabbitmq:
     host: leopard.lmq.cloudamqp.com
@@ -26,29 +19,11 @@ spring:
     username: qiyhxqyw
     password: cqmNazI1t4eaWlutnCjEwBYqat_BNcbX
     virtual-host: qiyhxqyw
-    ssl:
-      enabled: false
 
-# Actuator
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  health:
-    db:
-      enabled: true
-    rabbit:
-      enabled: true
+server:
+  port: 8090
 
 eureka:
   client:
-    register-with-eureka: true
-    fetch-registry: true
     service-url:
-      defaultZone: http://eureka-server:8761/eureka  # <- container Eureka
-
-# Config Server
-spring:
-  config:
-    import: configserver:http://config-server:8888  # <- container Config Server
+      defaultZone: http://eureka-server:8761/eureka
