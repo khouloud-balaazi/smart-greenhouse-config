@@ -14,11 +14,13 @@ spring:
     show-sql: true
 
   rabbitmq:
-    host: leopard.lmq.cloudamqp.com
+    host: rabbitmq
     port: 5672
-    username: qiyhxqyw
-    password: cqmNazI1t4eaWlutnCjEwBYqat_BNcbX
-    virtual-host: qiyhxqyw
+    username: guest
+    password: guest
+    virtual-host: /
+    
+    
 
 server:
   port: 8089
